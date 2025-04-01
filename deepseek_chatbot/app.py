@@ -46,7 +46,9 @@ def main() -> None:
             st.session_state.token = env_token
 
         if not st.session_state.authenticated:
-            auth_option = st.radio("Select authentication method", options=["GitHub Token", "Azure Key"])
+            auth_option = st.radio(
+                "Select authentication method", options=["GitHub Token", "Azure Key"]
+            )
 
             if auth_option == "GitHub Token":
                 token = st.text_input(
@@ -138,7 +140,9 @@ def main() -> None:
                     if streaming_enabled:
                         # Stream the response
                         full_response = ""
-                        response = chatbot.get_response(api_messages, stream=True, max_tokens=max_tokens)
+                        response = chatbot.get_response(
+                            api_messages, stream=True, max_tokens=max_tokens
+                        )
                         if response is not None:  # Check if response exists
                             try:
                                 for chunk in response:
@@ -159,13 +163,17 @@ def main() -> None:
                                 final_response = full_response
                             except Exception as e:
                                 st.error(f"Error streaming response: {str(e)}")
-                                final_response = "Error getting response from the model."
+                                final_response = (
+                                    "Error getting response from the model."
+                                )
                         else:
                             final_response = "Error getting response from the model."
                             response_container.error(final_response)
                     else:
                         # Get complete response
-                        response = chatbot.get_response(api_messages, stream=False, max_tokens=max_tokens)
+                        response = chatbot.get_response(
+                            api_messages, stream=False, max_tokens=max_tokens
+                        )
                         if response is not None:
                             if (
                                 hasattr(response, "choices")
@@ -177,17 +185,23 @@ def main() -> None:
                                 final_response = response.choices[0].message.content
                                 response_container.write(final_response)
                             else:
-                                final_response = "Error getting response from the model."
+                                final_response = (
+                                    "Error getting response from the model."
+                                )
                                 response_container.error(final_response)
                         else:
                             final_response = "Error getting response from the model."
                             response_container.error(final_response)
 
                     # Add assistant response to chat history
-                    st.session_state.messages.append({"role": "assistant", "content": final_response})
+                    st.session_state.messages.append(
+                        {"role": "assistant", "content": final_response}
+                    )
     else:
         # Show intro message when not authenticated
-        st.info("👈 Please authenticate using your GitHub token or Azure key to start chatting with DeepSeek-V3.")
+        st.info(
+            "👈 Please authenticate using your GitHub token or Azure key to start chatting with DeepSeek-V3."
+        )
         st.image(
             "https://models.inference.ai.azure.com/static/ai/model-images/azure-deepseek.jpg",
             width=400,

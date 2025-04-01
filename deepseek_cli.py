@@ -31,7 +31,10 @@ def get_credentials() -> str:
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("AZURE_KEY")
 
     if not token:
-        print("Error: No authentication token found. Set GITHUB_TOKEN or AZURE_KEY " "environment variable.")
+        print(
+            "Error: No authentication token found. Set GITHUB_TOKEN or AZURE_KEY "
+            "environment variable."
+        )
         print("You can also create a .env file based on env_example")
         sys.exit(1)
 
@@ -116,7 +119,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="DeepSeek API Utility")
     parser.add_argument("prompt", nargs="?", help="The prompt to send to DeepSeek")
     parser.add_argument("--stream", action="store_true", help="Stream the response")
-    parser.add_argument("--interactive", "-i", action="store_true", help="Interactive mode")
+    parser.add_argument(
+        "--interactive", "-i", action="store_true", help="Interactive mode"
+    )
 
     args = parser.parse_args()
 

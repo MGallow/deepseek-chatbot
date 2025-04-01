@@ -47,7 +47,9 @@ class DeepSeekChatbot:
         messages: List[Union[UserMessage, AssistantMessage, SystemMessage]],
         stream: bool = False,
         max_tokens: int = 1000,
-    ) -> Union[ChatCompletionsResponse, Generator[ChatCompletionsStreamResponse, None, None]]:
+    ) -> Union[
+        ChatCompletionsResponse, Generator[ChatCompletionsStreamResponse, None, None]
+    ]:
         """
         Get a response from the DeepSeek model based on the provided messages.
 

@@ -13,7 +13,8 @@ with open("requirements.txt", encoding="utf-8") as f:
 setup(
     name="deepseek-chatbot",
     version="0.1.0",
-    description="A Streamlit-based chatbot for interacting with DeepSeek-V3 " "language model",
+    description="A Streamlit-based chatbot for interacting with DeepSeek-V3 "
+    "language model",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Your Name",

@@ -6,10 +6,15 @@ the DeepSeek-V3 language model through Azure AI Inference SDK.
 """
 
 import os
-from typing import Optional, Union, Any, Generator
+from typing import Optional, Union, Generator
 import streamlit as st
 from azure.ai.inference import ChatCompletionsClient
-from azure.ai.inference.models import AssistantMessage, UserMessage
+from azure.ai.inference.models import (
+    AssistantMessage,
+    UserMessage,
+    ChatCompletionsResponse,
+    ChatCompletionsStreamResponse,
+)
 from azure.core.credentials import AzureKeyCredential
 
 # Configuration
@@ -38,7 +43,14 @@ class DeepSeekChatbot:
         )
         self.model_name = MODEL_NAME
 
-    def get_response(self, messages: list, stream: bool = False) -> Optional[Union[Any, Generator]]:
+    def get_response(
+        self, messages: list, stream: bool = False
+    ) -> Optional[
+        Union[
+            ChatCompletionsResponse,
+            Generator[ChatCompletionsStreamResponse, None, None],
+        ]
+    ]:
         """
         Get a response from the DeepSeek model based on the provided messages.
 
@@ -47,8 +59,8 @@ class DeepSeekChatbot:
             stream (bool): Whether to stream the response or not
 
         Returns:
-            If stream=False, returns the complete response
-            If stream=True, returns a stream of response chunks
+            If stream=False, returns the complete ChatCompletionsResponse
+            If stream=True, returns a stream of ChatCompletionsStreamResponse chunks
         """
         try:
             response = self.client.complete(
@@ -86,7 +98,9 @@ def main() -> None:
         st.header("Authentication")
 
         if not st.session_state.authenticated:
-            auth_option = st.radio("Select authentication method", options=["GitHub Token", "Azure Key"])
+            auth_option = st.radio(
+                "Select authentication method", options=["GitHub Token", "Azure Key"]
+            )
 
             if auth_option == "GitHub Token":
                 token = st.text_input(
@@ -188,7 +202,9 @@ def main() -> None:
                                 final_response = full_response
                             except Exception as e:
                                 st.error(f"Error streaming response: {str(e)}")
-                                final_response = "Error getting response from the model."
+                                final_response = (
+                                    "Error getting response from the model."
+                                )
                         else:
                             final_response = "Error getting response from the model."
                             response_container.error(final_response)
@@ -206,17 +222,23 @@ def main() -> None:
                                 final_response = response.choices[0].message.content
                                 response_container.write(final_response)
                             else:
-                                final_response = "Error getting response from the model."
+                                final_response = (
+                                    "Error getting response from the model."
+                                )
                                 response_container.error(final_response)
                         else:
                             final_response = "Error getting response from the model."
                             response_container.error(final_response)
 
                     # Add assistant response to chat history
-                    st.session_state.messages.append({"role": "assistant", "content": final_response})
+                    st.session_state.messages.append(
+                        {"role": "assistant", "content": final_response}
+                    )
     else:
         # Show intro message when not authenticated
-        st.info("👈 Please authenticate using your GitHub token or Azure key to start chatting with DeepSeek-V3.")
+        st.info(
+            "👈 Please authenticate using your GitHub token or Azure key to start chatting with DeepSeek-V3."
+        )
         st.image(
             "https://models.inference.ai.azure.com/static/ai/model-images/azure-deepseek.jpg",
             width=400,

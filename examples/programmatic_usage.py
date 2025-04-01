@@ -21,7 +21,10 @@ def main() -> None:
     token = get_token_from_env()
 
     if not token:
-        print("Error: No authentication token found. Please set GITHUB_TOKEN or AZURE_KEY " "environment variable.")
+        print(
+            "Error: No authentication token found. Please set GITHUB_TOKEN or AZURE_KEY "
+            "environment variable."
+        )
         print("You can also create a .env file based on env_example")
         sys.exit(1)
 
@@ -33,7 +36,11 @@ def main() -> None:
     messages = [UserMessage("What is the capital of France?")]
 
     response = chatbot.get_response(messages)
-    if hasattr(response, "choices") and response.choices and response.choices[0].message:
+    if (
+        hasattr(response, "choices")
+        and response.choices
+        and response.choices[0].message
+    ):
         print("Response:", response.choices[0].message.content)
     else:
         print("Error: Unable to get response from the model")
@@ -46,7 +53,11 @@ def main() -> None:
     ]
 
     response = chatbot.get_response(messages)
-    if hasattr(response, "choices") and response.choices and response.choices[0].message:
+    if (
+        hasattr(response, "choices")
+        and response.choices
+        and response.choices[0].message
+    ):
         print("Response:", response.choices[0].message.content)
     else:
         print("Error: Unable to get response from the model")
