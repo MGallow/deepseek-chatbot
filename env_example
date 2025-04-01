@@ -1,0 +1,8 @@
+# DeepSeek Chatbot Environment Variables
+# Rename this file to .env and fill in your credentials
+
+# GitHub Token with models:read permission
+# GITHUB_TOKEN=your_github_token
+
+# Azure Key (alternative authentication)
+# AZURE_KEY=your_azure_key
