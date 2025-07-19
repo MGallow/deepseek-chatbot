@@ -19,11 +19,39 @@ This package provides tools to interact with DeepSeek-V3, a powerful large langu
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- Conda (recommended for environment management)
+- Python 3.9 or higher
 - A GitHub token with `models:read` permission or an Azure key
 
-### Setup with Conda (Recommended)
+### Quick Setup with uv (Recommended)
+
+[uv](https://docs.astral.sh/uv/) is a fast Python package manager. Use our setup script for the easiest installation:
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd deepseek-chatbot
+
+# Run the setup script (installs uv if needed and sets up the project)
+./setup-uv.sh
+```
+
+Or manually with uv:
+
+```bash
+# Install uv (if not already installed)
+brew install uv  # macOS with Homebrew
+# or
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and set up the project
+git clone <repository-url>
+cd deepseek-chatbot
+
+# Create virtual environment and install dependencies
+uv sync
+```
+
+### Setup with Conda
 
 1. Clone this repository:
 
@@ -127,6 +155,11 @@ cp env_example .env
 Run the web interface with:
 
 ```bash
+# With uv (recommended)
+uv run streamlit run streamlit_app.py
+# or
+make uv-run-app
+
 # If installed with pip
 deepseek-chat
 
@@ -143,6 +176,11 @@ The application will start and open in your default web browser at <http://local
 Use the CLI for quick queries:
 
 ```bash
+# With uv (recommended)
+uv run python cli_app.py "What is the capital of France?"
+# or
+make uv-run-cli "What is the capital of France?"
+
 # If installed with pip
 deepseek-cli "What is the capital of France?"
 
@@ -153,6 +191,9 @@ python cli_app.py "What is the capital of France?"
 For interactive mode:
 
 ```bash
+# With uv (recommended)
+make uv-run-cli
+
 # If installed with pip
 deepseek-cli --interactive
 
@@ -204,6 +245,33 @@ for chunk in chatbot.get_response(messages, stream=True):
 ## 🔧 Development
 
 This package includes a Makefile to help with common development tasks:
+
+### With uv (Recommended)
+
+```bash
+# Install production dependencies only
+make uv-install
+
+# Install development dependencies
+make uv-dev
+
+# Run formatting
+make uv-format
+
+# Run linting
+make uv-lint
+
+# Run tests
+make uv-test
+
+# Sync dependencies with uv.lock
+make uv-sync
+
+# Update lock file
+make uv-lock
+```
+
+### Traditional pip/conda
 
 ```bash
 # Install development dependencies
