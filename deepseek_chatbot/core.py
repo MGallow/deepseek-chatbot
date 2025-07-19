@@ -7,13 +7,13 @@ the DeepSeek-V3 language model through Azure AI Inference SDK.
 
 import os
 from collections.abc import Generator
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import (
     AssistantMessage,
-    ChatCompletionsResponse,
-    ChatCompletionsStreamResponse,
+    ChatCompletions,
+    StreamingChatCompletions,
     SystemMessage,
     UserMessage,
 )
@@ -45,11 +45,11 @@ class DeepSeekChatbot:
 
     def get_response(
         self,
-        messages: List[Union[UserMessage, AssistantMessage, SystemMessage]],
+        messages: list[Union[UserMessage, AssistantMessage, SystemMessage]],
         stream: bool = False,
         max_tokens: int = 1000,
     ) -> Union[
-        ChatCompletionsResponse, Generator[ChatCompletionsStreamResponse, None, None]
+        ChatCompletions, Generator[StreamingChatCompletions, None, None]
     ]:
         """
         Get a response from the DeepSeek model based on the provided messages.
