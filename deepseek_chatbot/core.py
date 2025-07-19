@@ -6,15 +6,16 @@ the DeepSeek-V3 language model through Azure AI Inference SDK.
 """
 
 import os
-from typing import List, Optional, Union, Generator
+from collections.abc import Generator
+from typing import List, Optional, Union
 
 from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import (
     AssistantMessage,
-    SystemMessage,
-    UserMessage,
     ChatCompletionsResponse,
     ChatCompletionsStreamResponse,
+    SystemMessage,
+    UserMessage,
 )
 from azure.core.credentials import AzureKeyCredential
 

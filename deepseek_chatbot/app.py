@@ -96,9 +96,11 @@ def main() -> None:
         st.header("About")
         st.markdown(
             """
-        This chatbot uses the DeepSeek-V3 language model through Azure AI Inference services.
+        This chatbot uses the DeepSeek-V3 language model through Azure AI Inference
+        services.
 
-        DeepSeek-V3 is an advanced language model that can handle a variety of natural language tasks.
+        DeepSeek-V3 is an advanced language model that can handle a variety of
+        natural language tasks.
         """
         )
 
@@ -200,7 +202,8 @@ def main() -> None:
     else:
         # Show intro message when not authenticated
         st.info(
-            "👈 Please authenticate using your GitHub token or Azure key to start chatting with DeepSeek-V3."
+            "👈 Please authenticate using your GitHub token or Azure key to start "
+            "chatting with DeepSeek-V3."
         )
         st.image(
             "https://models.inference.ai.azure.com/static/ai/model-images/azure-deepseek.jpg",
@@ -210,8 +213,8 @@ def main() -> None:
 
 def run_app() -> None:
     """Start the Streamlit app from command line."""
-    import sys
     import os
+    import sys
 
     # Add the current directory to sys.path to ensure proper imports
     current_dir = os.path.dirname(os.path.abspath(__file__))

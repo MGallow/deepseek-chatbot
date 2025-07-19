@@ -5,11 +5,12 @@ This module provides a command-line interface for interacting with the
 DeepSeek-V3 language model through Azure AI Inference SDK.
 """
 
-import sys
 import argparse
+import sys
 from typing import Optional
-from dotenv import load_dotenv
+
 from azure.ai.inference.models import UserMessage
+from dotenv import load_dotenv
 
 from deepseek_chatbot.core import DeepSeekChatbot, get_token_from_env
 
