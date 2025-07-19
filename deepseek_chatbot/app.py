@@ -210,8 +210,8 @@ def main() -> None:
 
 def run_app() -> None:
     """Start the Streamlit app from command line."""
-    import sys
     import os
+    import sys
 
     # Add the current directory to sys.path to ensure proper imports
     current_dir = os.path.dirname(os.path.abspath(__file__))
