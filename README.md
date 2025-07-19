@@ -6,6 +6,8 @@
 
 A Python package providing a Streamlit-based conversational interface and command-line tool for interacting with the DeepSeek-V3 language model through Azure AI Inference services.
 
+> **⚠️ Important**: This package currently requires Azure AI Inference SDK version 1.0.0b9 specifically. There may be compatibility issues with newer versions. See [Troubleshooting](#-troubleshooting) for details.
+
 ![DeepSeek Chatbot](https://models.inference.ai.azure.com/static/ai/model-images/azure-deepseek.jpg)
 
 ## 📑 Table of Contents
@@ -518,7 +520,15 @@ pip list | grep deepseek-chatbot
 
 # Reinstall in development mode
 pip install -e .
+
+# Check Azure AI Inference SDK version (must be 1.0.0b9)
+pip list | grep azure-ai-inference
+
+# If version mismatch, reinstall the correct version
+pip install azure-ai-inference==1.0.0b9
 ```
+
+**Note**: The Azure AI Inference SDK is in beta. This package requires version 1.0.0b9 specifically due to API changes between versions.
 
 ### Runtime Issues
 
