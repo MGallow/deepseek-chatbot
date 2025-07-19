@@ -1,0 +1,13 @@
+# uv configuration file
+
+# Use faster dependency resolver
+resolution = "highest"
+
+# Cache configuration
+cache-dir = ".uv-cache"
+
+# Index configuration
+index-url = "https://pypi.org/simple"
+
+# Python version preference
+python-preference = "system"
