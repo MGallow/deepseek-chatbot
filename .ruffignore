@@ -1,0 +1,23 @@
+# Ignore build directories
+build/
+dist/
+*.egg-info/
+
+# Ignore virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Ignore cache directories
+.ruff_cache/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+
+# Ignore migrations (if applicable)
+*/migrations/*
+
+# Ignore generated files
+*_pb2.py
+*_pb2_grpc.py

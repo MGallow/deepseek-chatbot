@@ -32,13 +32,13 @@ help:
 	@echo "  make uv-run-cli  - Run CLI app with uv"
 	@echo "  make uv-run-app  - Run Streamlit app with uv"
 	@echo "  make uv-test     - Run tests with uv"
-	@echo "  make uv-lint     - Run linting with uv"
-	@echo "  make uv-format   - Format code with uv"
+	@echo "  make uv-lint     - Run linting with ruff and mypy using uv"
+	@echo "  make uv-format   - Format code with ruff using uv"
 	@echo ""
 	@echo "🧪 Testing & Quality:"
 	@echo "  make test        - Run tests"
-	@echo "  make lint        - Run linting checks"
-	@echo "  make format      - Format code with black"
+	@echo "  make lint        - Run linting checks with ruff"
+	@echo "  make format      - Format code with ruff"
 	@echo "  make pre-commit  - Run pre-commit checks on all files"
 	@echo "  make pre-commit-install - Install pre-commit hooks"
 	@echo ""
@@ -72,11 +72,11 @@ uv-test:
 	$(UV) run pytest tests
 
 uv-lint:
-	$(UV) run flake8 deepseek_chatbot
+	$(UV) run ruff check deepseek_chatbot
 	$(UV) run mypy deepseek_chatbot
 
 uv-format:
-	$(UV) run black deepseek_chatbot
+	$(UV) run ruff format deepseek_chatbot
 
 # Traditional pip commands
 install:
@@ -96,11 +96,11 @@ test:
 	$(PYTHON) -m pytest tests
 
 lint:
-	$(PYTHON) -m flake8 deepseek_chatbot
+	$(PYTHON) -m ruff check deepseek_chatbot
 	$(PYTHON) -m mypy deepseek_chatbot
 
 format:
-	$(PYTHON) -m black deepseek_chatbot
+	$(PYTHON) -m ruff format deepseek_chatbot
 
 pre-commit:
 	$(PYTHON) -m pre_commit run --all-files
