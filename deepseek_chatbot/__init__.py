@@ -6,7 +6,7 @@ DeepSeek-V3 language model through Azure AI Inference services.
 """
 
 __version__ = "0.1.0"
-__author__ = "Your Name"
+__author__ = "MGallow"
 
 # Configuration
 ENDPOINT = "https://models.inference.ai.azure.com"

@@ -1,5 +1,5 @@
 azure-ai-inference>=1.0.0b9
-streamlit==1.18.0
+streamlit>=1.30.0
 python-dotenv>=1.0.0
 typing-extensions>=4.6.0
 setuptools>=65.0.0

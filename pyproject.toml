@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
 authors = [
-    {name = "Your Name", email = "youremail@example.com"},
+    {name = "MGallow", email = "contact@mgallow.com"},
 ]
 keywords = ["chatbot", "deepseek", "streamlit", "ai", "language-model"]
 classifiers = [
@@ -25,7 +25,7 @@ classifiers = [
 ]
 dependencies = [
     "azure-ai-inference>=1.0.0b9",
-    "streamlit==1.18.0",
+    "streamlit>=1.30.0",
     "python-dotenv>=1.0.0",
     "typing-extensions>=4.6.0",
 ]
